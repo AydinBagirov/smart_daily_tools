@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../ads/banner_ad_widget.dart';
 import '../weight_converter.dart';
 import '../weight_unit.dart';
 
@@ -126,6 +127,7 @@ class _WeightScreenState extends State<WeightScreen> {
           ],
         ),
       ),
+        bottomNavigationBar: BannerAdWidget()
     );
   }
 }

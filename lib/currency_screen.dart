@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../currency_converter.dart';
 import '../currency_unit.dart';
+import 'ads/banner_ad_widget.dart';
 
 class CurrencyScreen extends StatefulWidget {
   @override
@@ -125,6 +126,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: BannerAdWidget()
     );
   }
 }

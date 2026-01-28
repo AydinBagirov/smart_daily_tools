@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_daily_tools/length_converter.dart';
+import '../ads/banner_ad_widget.dart';
 import '../length_unit.dart';
 
 class LengthScreen extends StatefulWidget {
@@ -125,6 +126,7 @@ class _LengthScreenState extends State<LengthScreen> {
           ],
         ),
       ),
+        bottomNavigationBar: BannerAdWidget()
     );
   }
 }

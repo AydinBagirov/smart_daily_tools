@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../ads/banner_ad_widget.dart';
 import '../temperature_converter.dart';
 import '../temperature_unit.dart';
 
@@ -126,6 +127,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
           ],
         ),
       ),
+        bottomNavigationBar: BannerAdWidget()
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_daily_tools/screens/temperature_screen.dart';
 import 'package:smart_daily_tools/screens/weight_screen.dart';
+import '../ads/banner_ad_widget.dart';
 import '../currency_screen.dart';
 import 'length_screen.dart';
 
@@ -59,16 +60,7 @@ class ConverterListScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 50,
-        color: Colors.grey[300],
-        child: Center(
-          child: Text(
-            'Banner Ad Placeholder',
-            style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w500),
-          ),
-        ),
-      ),
+      bottomNavigationBar: BannerAdWidget()
     );
   }
 }
