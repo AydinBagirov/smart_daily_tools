@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../currency_converter.dart';
 import '../currency_unit.dart';
 import 'ads/banner_ad_widget.dart';
+import 'ads/interstitial_ad_service.dart';
 
 class CurrencyScreen extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   double? result;
 
   void convert() {
+    InterstitialAdService.showAdOnClick();
     double value = double.tryParse(controller.text) ?? 0;
     setState(() {
       result = CurrencyConverter.convert(value: value, from: fromUnit, to: toUnit);

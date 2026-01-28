@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_daily_tools/screens/temperature_screen.dart';
 import 'package:smart_daily_tools/screens/weight_screen.dart';
 import '../ads/banner_ad_widget.dart';
+import '../ads/interstitial_ad_service.dart'; // ✅ Import ekle
 import '../currency_screen.dart';
 import 'length_screen.dart';
 
@@ -20,34 +21,37 @@ class ConverterListScreen extends StatelessWidget {
         title: Text(
           'Smart Daily Tools',
           style: TextStyle(
-            fontFamily: 'Roboto', // Yazı fontu
+            fontFamily: 'Roboto',
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.teal, // AppBar rengi
+        backgroundColor: Colors.teal,
       ),
       body: Container(
-        color: Colors.lightBlue[50], // Arka plan rengi
+        color: Colors.lightBlue[50],
         child: ListView.builder(
           itemCount: tools.length,
           itemBuilder: (context, index) {
             return Card(
-              color: Colors.white, // Kart rengi
+              color: Colors.white,
               margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: ListTile(
                 title: Text(
                   tools[index]['name'],
                   style: TextStyle(
-                    fontFamily: 'Roboto', // Yazı fontu
+                    fontFamily: 'Roboto',
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.teal[800], // Yazı rengi
+                    color: Colors.teal[800],
                   ),
                 ),
                 trailing: Icon(Icons.arrow_forward, color: Colors.teal),
                 onTap: () {
+                  // ✅ Liste öğesine tıklandığında reklam sayacını artır
+                  InterstitialAdService.showAdOnClick();
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -60,7 +64,7 @@ class ConverterListScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: BannerAdWidget()
+      bottomNavigationBar: BannerAdWidget(),
     );
   }
 }

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'ads/interstitial_ad_service.dart';
 import 'screens/converter_list_screen.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  // ✅ AdMob'u başlat
+  await MobileAds.instance.initialize();
+
+  // ✅ Interstitial Ad servisini başlat
+  InterstitialAdService.loadAd();
+
   runApp(SmartDailyToolsApp());
 }
 

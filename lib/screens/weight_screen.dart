@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../ads/banner_ad_widget.dart';
+import '../ads/interstitial_ad_service.dart'; // ✅ Import ekle
 import '../weight_converter.dart';
 import '../weight_unit.dart';
 
@@ -15,6 +16,9 @@ class _WeightScreenState extends State<WeightScreen> {
   double? result;
 
   void convert() {
+    // ✅ Reklam servisini çağır (3 tıklamada bir reklam gösterir)
+    InterstitialAdService.showAdOnClick();
+
     double value = double.tryParse(controller.text) ?? 0;
     setState(() {
       result = WeightConverter.convert(
@@ -29,16 +33,16 @@ class _WeightScreenState extends State<WeightScreen> {
         title: Text(
           'Weight Converter',
           style: TextStyle(
-            fontFamily: 'Roboto', // Yazı fontu
+            fontFamily: 'Roboto',
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.teal, // AppBar rengi
+        backgroundColor: Colors.teal,
       ),
       body: Container(
-        color: Colors.lightBlue[50], // Arka plan rengi
+        color: Colors.lightBlue[50],
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
@@ -101,15 +105,16 @@ class _WeightScreenState extends State<WeightScreen> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: convert,
+              onPressed: convert, // ✅ Bu fonksiyon artık reklam da gösterecek
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal, // Buton rengi
+                backgroundColor: Colors.teal,
               ),
               child: Text(
                 'Convert',
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -127,7 +132,7 @@ class _WeightScreenState extends State<WeightScreen> {
           ],
         ),
       ),
-        bottomNavigationBar: BannerAdWidget()
+      bottomNavigationBar: BannerAdWidget(),
     );
   }
 }

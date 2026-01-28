@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_daily_tools/length_converter.dart';
 import '../ads/banner_ad_widget.dart';
+import '../ads/interstitial_ad_service.dart'; // ✅ Import ekle
 import '../length_unit.dart';
 
 class LengthScreen extends StatefulWidget {
@@ -15,6 +16,9 @@ class _LengthScreenState extends State<LengthScreen> {
   double? result;
 
   void convert() {
+    // ✅ Reklam servisini çağır (3 tıklamada bir reklam gösterir)
+    InterstitialAdService.showAdOnClick();
+
     double value = double.tryParse(controller.text) ?? 0;
     setState(() {
       result = LengthConverter.convert(value: value, from: fromUnit, to: toUnit);
@@ -28,16 +32,16 @@ class _LengthScreenState extends State<LengthScreen> {
         title: Text(
           'Length Converter',
           style: TextStyle(
-            fontFamily: 'Roboto', // Yazı fontu
+            fontFamily: 'Roboto',
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.teal, // AppBar rengi
+        backgroundColor: Colors.teal,
       ),
       body: Container(
-        color: Colors.lightBlue[50], // Arka plan rengi
+        color: Colors.lightBlue[50],
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
@@ -100,15 +104,16 @@ class _LengthScreenState extends State<LengthScreen> {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: convert,
+              onPressed: convert, // ✅ Bu fonksiyon artık reklam da gösterecek
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal, // Buton rengi
+                backgroundColor: Colors.teal,
               ),
               child: Text(
                 'Convert',
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -126,7 +131,7 @@ class _LengthScreenState extends State<LengthScreen> {
           ],
         ),
       ),
-        bottomNavigationBar: BannerAdWidget()
+      bottomNavigationBar: BannerAdWidget(),
     );
   }
 }
