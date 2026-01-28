@@ -28,8 +28,8 @@ class InterstitialAdService {
   /// Interstitial reklam yükle
   static void loadAd() {
     InterstitialAd.load(
-      //adUnitId: 'ca-app-pub-6949454487878309/3984726740',
-      adUnitId: 'ca-app-pub-3940256099942544/1033173712', // Test ID
+      adUnitId: 'ca-app-pub-6949454487878309/3984726740',
+      //adUnitId: 'ca-app-pub-3940256099942544/1033173712', // Test ID
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) => _interstitialAd = ad,
