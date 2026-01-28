@@ -1,0 +1,59 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties") // ✅ Düzeltildi
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace "com.example.smart_daily_tools"
+    compileSdk flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) { // ✅ Güvenlik kontrolü eklendi
+                keyAlias keystoreProperties["keyAlias"]
+                keyPassword keystoreProperties["keyPassword"]
+                storeFile file(keystoreProperties["storeFile"]) // ✅ Düzeltildi
+                storePassword keystoreProperties["storePassword"]
+            }
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.example.smart_daily_tools"
+        minSdk flutter.minSdkVersion
+        targetSdk flutter.targetSdkVersion
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8 // ✅ Java 17'den 8'e düşürüldü
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8" // ✅ 17'den 8'e düşürüldü
+    }
+
+    buildTypes {
+        release {
+            if (keystorePropertiesFile.exists()) { // ✅ Güvenlik kontrolü
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+flutter {
+    source "../.."
+}
